@@ -33,9 +33,35 @@ public class ListaCircular<T> extends Lista {
         }
     }
 
-    @Override
     public Nodo Eliminar(Object valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        NodoCircular temp1;
+        NodoCircular temp2;
+        NodoCircular temp3;
+        NodoCircular eliminado = null;
+        
+        temp1 = (NodoCircular)Cabeza;
+        temp2 = (NodoCircular)Cabeza.getSiguiente();
+        
+        if (Cabeza.getValor()==valor){
+            Cabeza = Cabeza.getSiguiente();
+            ((NodoDoble)Cabeza).setAnterior(null);
+        }else{
+            while (true){
+                if (temp2.getValor()==valor){
+                    temp1.setSiguiente(temp2.getSiguiente());
+                    temp3 = (NodoCircular)temp2.getSiguiente();
+                    temp3.setAnterior(temp2.getAnterior());
+                    eliminado = temp2;
+                    break;
+                }else if(temp2.getValor()==null){
+                    break;
+                }
+                temp1 = temp2;
+                temp2 = (NodoCircular)temp2.getSiguiente();
+            }
+            
+        } 
+        return eliminado;
     }
     
     

@@ -37,9 +37,36 @@ public class ListaDoble<T> extends Lista{
         }
     }    
 
-    @Override
+     @Override
     public Nodo Eliminar(Object valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        NodoDoble temp1;
+        NodoDoble temp2;
+        NodoDoble temp3;
+        NodoDoble eliminado = null;
+        
+        temp1 = (NodoDoble)Cabeza;
+        temp2 = (NodoDoble)Cabeza.getSiguiente();
+        
+        if (Cabeza.getValor()==valor){
+            Cabeza = Cabeza.getSiguiente();
+            ((NodoDoble)Cabeza).setAnterior(null);
+        }else{
+            while (true){
+                if (temp2.getValor()==valor){
+                    temp1.setSiguiente(temp2.getSiguiente());
+                    temp3 = (NodoDoble)temp2.getSiguiente();
+                    temp3.setAnterior(temp2.getAnterior());
+                    eliminado = temp2;
+                    break;
+                }else if(temp2.getValor()==null){
+                    break;
+                }
+                temp1 = temp2;
+                temp2 = (NodoDoble)temp2.getSiguiente();
+            }
+            
+        } 
+        return eliminado;
     }
     
 }

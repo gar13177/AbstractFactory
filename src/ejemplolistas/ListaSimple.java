@@ -35,7 +35,30 @@ public class ListaSimple<T> extends Lista{
 
     @Override
     public Nodo Eliminar(Object valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Nodo temp1;
+        Nodo temp2;
+        Nodo eliminado = null;
+        
+        temp1 = Cabeza;
+        temp2 = Cabeza.getSiguiente();
+        
+        if (Cabeza.getValor()==valor){
+            Cabeza = Cabeza.getSiguiente();
+        }else{
+            while (true){
+                if (temp2.getValor()==valor){
+                    temp1.setSiguiente(temp2.getSiguiente());
+                    eliminado = temp2;
+                    break;
+                }else if(temp2.getSiguiente()==null){
+                    break;
+                }
+                temp1 = temp2;
+                temp2 = temp2.getSiguiente();
+            }
+            
+        } 
+        return eliminado;
     }
 
     
